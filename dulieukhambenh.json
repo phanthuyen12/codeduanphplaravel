@@ -1,0 +1,153 @@
+{
+  "patient": {
+    "fullName": "Nguyễn Văn A",
+    "informationpatient": {
+      "dateOfBirth": "1990-01-01",
+      "gender": "Nam",
+      "phone": "0123456789",
+      "address": "123 Đường ABC, Phường XYZ, Thành phố HCM",
+      "idCard": "123456789",
+      "healthDeclaration": {
+        "allergies": "Không",
+        "chronicDiseases": "Cao huyết áp, Tiểu đường",
+        "currentMedications": "Thuốc huyết áp"
+      },
+      "healthInsurance": {
+        "insuranceNumber": "987654321",
+        "company": "Công ty Bảo hiểm ABC"
+      },
+      "citizenId": "456123789",
+      "vaccinationStatus": [
+        {
+          "vaccine": "COVID-19",
+          "dateAdministered": "2021-06-01",
+          "booster": "Có"
+        },
+        {
+          "vaccine": "Cúm",
+          "dateAdministered": "2023-10-10",
+          "booster": "Không"
+        }
+      ]
+    },
+    "accessRequests": {
+      "hospitalC": [
+        {
+          "orgId": "hospitalC",
+          "reason": "Yêu cầu xem thông tin khám để phục vụ cho chẩn đoán",
+          "status": "pending"
+        }
+      ],
+      "hospitalD": [
+        {
+          "orgId": "hospitalD",
+          "reason": "Cần xem lịch sử khám bệnh để điều trị",
+          "status": "pending"
+        }
+      ]
+    },
+    "hospitalAccessRequirements": [
+      {
+        "hospitalName": "Phangiathuyen",
+        "time": "2024-09-25",
+        "status": true
+      },
+      {
+        "hospitalName": "Bệnh viện Đa khoa XYZ",
+        "time": "2024-09-30",
+        "status": false
+      }
+    ],
+    "medicalHistory": [
+      {
+        "hospital": {
+          "name": "Bệnh viện Đa khoa XYZ",
+          "address": "456 Đường DEF, Phường UVW, Thành phố HCM",
+          "phone": "0987654321",
+          "departments": [
+            "Nội khoa",
+            "Ngoại khoa",
+            "Nhi khoa"
+          ]
+        },
+        "appointment": {
+          "date": "2024-09-25",
+          "time": "14:00",
+          "doctor": "Bác sĩ Trần Văn B",
+          "reason": "Khám tổng quát",
+          "results": "Chưa có kết quả"
+        },
+        "examinations": [
+          {
+            "test": "Xét nghiệm máu",
+            "date": "2024-09-25",
+            "results": "Chưa có kết quả"
+          },
+          {
+            "test": "Siêu âm ổ bụng",
+            "date": "2024-09-25",
+            "results": "Bình thường"
+          }
+        ],
+        "conditions": [
+          {
+            "condition": "Cao huyết áp",
+            "dateDiagnosed": "2020-06-15",
+            "treatment": "Thuốc hạ huyết áp",
+            "prescription": [
+              {
+                "medicine": "Amlodipine",
+                "dosage": "5mg",
+                "frequency": "1 lần/ngày"
+              },
+              {
+                "medicine": "Lisinopril",
+                "dosage": "10mg",
+                "frequency": "1 lần/ngày"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hospital": {
+          "name": "Bệnh viện Chuyên khoa ABC",
+          "address": "789 Đường GHI, Phường JKL, Thành phố HCM",
+          "phone": "0123456789",
+          "departments": [
+            "Nội tiết",
+            "Tim mạch"
+          ]
+        },
+        "appointment": {
+          "date": "2023-05-10",
+          "time": "09:00",
+          "doctor": "Bác sĩ Nguyễn Văn C",
+          "reason": "Kiểm tra định kỳ",
+          "results": "Bình thường"
+        },
+        "examinations": [
+          {
+            "test": "Xét nghiệm nước tiểu",
+            "date": "2023-05-10",
+            "results": "Bình thường"
+          }
+        ],
+        "conditions": [
+          {
+            "condition": "Tiểu đường",
+            "dateDiagnosed": "2021-03-10",
+            "treatment": "Chế độ ăn kiêng",
+            "prescription": [
+              {
+                "medicine": "Metformin",
+                "dosage": "500mg",
+                "frequency": "2 lần/ngày"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

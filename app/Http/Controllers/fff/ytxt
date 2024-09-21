@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\LevelDBController;
+
+class MedicalController extends Controller
+{
+    //
+    protected $levelDB;
+
+    public function __construct(LevelDBController $levelDB)
+    {
+        $this->levelDB = $levelDB;
+    }
+
+    public function createMedicalRecord(Request $request)
+    {
+        // Xác thực dữ liệu đầu vào
+        $validatedData = $request->validate([
+            'fullName' => 'required|string',
+            'numberccd' => 'required|string',
+            'informationpatient.dateOfBirth' => 'required|date',
+            'informationpatient.gender' => 'required|string',
+            'informationpatient.phone' => 'required|string',
+            'informationpatient.address' => 'required|string',
+            'informationpatient.idCard' => 'required|string',
+        ]);
+    
+        // Lưu dữ liệu đã xác thực
+        $medicalData = [
+            'fullName' => $validatedData['fullName'],
+            'numberccd' => $validatedData['numberccd'],
+            'informationpatient' => [
+                'dateOfBirth' => $validatedData['informationpatient.dateOfBirth'],
+                'gender' => $validatedData['informationpatient.gender'],
+                'phone' => $validatedData['informationpatient.phone'],
+                'address' => $validatedData['informationpatient.address'],
+                'idCard' => $validatedData['informationpatient.idCard'],
+            ],
+        ];
+    
+        // Kiểm tra xem CCCD đã tồn tại trong LevelDB
+        $existingRecord = $this->levelDB->getData('medical_' . $medicalData['numberccd']);
+    
+        if ($existingRecord) {
+            return response()->json(['message' => 'Số CCCD đã tồn tại trong hệ thống.'], 409);
+        }
+    
+        // Lưu dữ liệu vào LevelDB
+        try {
+            $result = $this->levelDB->putData('medical_' . $medicalData['numberccd'], json_encode($medicalData));
+    
+            // Trả về phản hồi
+            return response()->json(['message' => 'Sổ khám bệnh được tạo thành công.', 'data' => $medicalData], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Tạo sổ khám bệnh thất bại.', 'error' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function getMedicalRecord(Request $request){
+        $numberccd = $request->input('numberccd');
+
+        $result = $this->levelDB->get('medical_' . $numberccd);
+        if ($result) {
+            return response()->json(['message' => 'Sổ khám bệnh được tạo thành công.', 'data' => $result], 201);
+        } else {
+            return response()->json(['message' => 'Tạo sổ khám bệnh thất bại.'], 500);
+        }
+    }
+    
+}
